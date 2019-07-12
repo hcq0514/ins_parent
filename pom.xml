@@ -7,6 +7,9 @@
     <modules>
         <module>ins_eureka</module>
         <module>ins_user</module>
+        <module>ins_gateway</module>
+        <module>ins_common</module>
+        <module>ins_model</module>
     </modules>
 
     <parent>
