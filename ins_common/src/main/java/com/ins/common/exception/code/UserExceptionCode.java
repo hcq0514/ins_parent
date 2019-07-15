@@ -10,12 +10,11 @@ import lombok.ToString;
  */
 @ToString
 public enum UserExceptionCode implements ResultCode {
-    //user异常从4001开始
-    USER_NOT_EXIST(false, 4001, "用户不存在"),
-    USER_ALREADY_EXIST(false, 4002, "用户已存在！"),
-    //admin异常从4021开始
-    ADMIN_NOT_EXIST(false, 4021, "管理员不存在"),
-    ADMIN_ALREADY_EXIST(false, 4022, "管理员已存在！");
+    //user异常从2001开始
+    USER_NOT_EXIST(false, 2001, "用户不存在"),
+    USER_ALREADY_EXIST(false, 2002, "用户已存在！"),
+    PASSWORD_ERROR(false, 2003, "密码错误！"),
+    ;
     @ApiParam("是否成功")
     boolean success;
     @ApiParam("操作代码")
