@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -20,7 +21,7 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 @Table(name = "user")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class User  {
+public class User  implements Serializable {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")
@@ -38,9 +39,9 @@ public class User  {
     @ApiModelProperty("个人简介brief introduction")
     private String bio;
     @ApiModelProperty("粉丝数")
-    private Integer fansCount;
+    private Integer fansNum;
     @ApiModelProperty("关注人数")
-    private Integer followCount;
+    private Integer followNum;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 

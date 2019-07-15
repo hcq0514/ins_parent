@@ -21,7 +21,7 @@ public class GlobalCorsConfig {
      */
     private static final String ALLOWED_HEADERS = "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN,token,username,client";
     private static final String ALLOWED_METHODS = "GET, POST, OPTIONS, PUT, DELETE";
-    private static final String ALLOWED_ORIGIN = "http://localhost:6110";
+    private static final String ALLOWED_ORIGIN = "http://localhost:6100";
     private static final String ALLOWED_EXPOSE = "*";
     private static final String MAX_AGE = "18000L";
 

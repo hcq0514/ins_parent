@@ -2,13 +2,12 @@ package com.ins.user.service;
 
 import com.ins.common.exception.ExceptionCast;
 import com.ins.common.exception.code.UserExceptionCode;
-import com.ins.common.result.CommonCode;
-import com.ins.common.result.CommonResult;
 import com.ins.model.user.User;
 import com.ins.user.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -21,68 +20,54 @@ public class UserService {
     @Autowired
     UserDao userDao;
 
-    public CommonResult register(User user) {
-        User save = userDao.save(user);
-        return new CommonResult<>(CommonCode.SUCCESS, save);
+    public User register(User user) {
+        return userDao.save(user);
     }
 
     //todo 密码使用加密
-    public CommonResult login(String email, String password) {
+    public User login(String email, String password) {
         Optional<User> userOptional = userDao.getByEmail(email);
-        if (!userOptional.isPresent()){
+        if (!userOptional.isPresent()) {
             ExceptionCast.cast(UserExceptionCode.USER_NOT_EXIST);
         }
         User user = userOptional.get();
-        if (!user.getPassword().equals(password)){
+        if (!user.getPassword().equals(password)) {
             ExceptionCast.cast(UserExceptionCode.PASSWORD_ERROR);
         }
-        return new CommonResult<>(CommonCode.SUCCESS, user);
+        return user;
     }
 
-    public CommonResult modifyPassword(String email, String oldPassword, String newPassword) {
+    public User modifyPassword(String email, String oldPassword, String newPassword) {
         Optional<User> userOptional = userDao.getByEmail(email);
-        if (!userOptional.isPresent()){
+        if (!userOptional.isPresent()) {
             ExceptionCast.cast(UserExceptionCode.USER_NOT_EXIST);
         }
         User user = userOptional.get();
-        if (!user.getPassword().equals(oldPassword)){
+        if (!user.getPassword().equals(oldPassword)) {
             ExceptionCast.cast(UserExceptionCode.PASSWORD_ERROR);
         }
         user.setPassword(newPassword);
         userDao.save(user);
-        return new CommonResult<>(CommonCode.SUCCESS, user);
+        return user;
     }
 
-    public CommonResult getUserById(String id) {
+    public User getUserById(String id) {
         Optional<User> userOptional = userDao.findById(id);
-        if (!userOptional.isPresent()){
+        if (!userOptional.isPresent()) {
             ExceptionCast.cast(UserExceptionCode.USER_NOT_EXIST);
         }
-        return new CommonResult<>(CommonCode.SUCCESS, userOptional.get());
+        return userOptional.get();
     }
 
-    public CommonResult modifyUser(User user) {
-        Optional<User> userOptional = userDao.findById(user.getId());
-        if (!userOptional.isPresent()){
-            ExceptionCast.cast(UserExceptionCode.USER_NOT_EXIST);
-        }
-        User update = userDao.save(user);
-        return new CommonResult<>(CommonCode.SUCCESS, update);
+    public User modifyUsernameAndBio(String id, String username, String bio) {
+        User user = userDao.save(getUserById(id).setUsername(username).setBio(bio));
+        return user;
     }
 
-    public CommonResult getFansCountById(String id) {
-        Optional<User> userOptional = userDao.findById(id);
-        if (!userOptional.isPresent()){
-            ExceptionCast.cast(UserExceptionCode.USER_NOT_EXIST);
-        }
-        return new CommonResult<>(CommonCode.SUCCESS, userOptional.get().getFansCount());
+    public List<User> getFollowList(String id) {
+        //判断是否存在该用户
+        getUserById(id);
+        return userDao.getFollowList(id);
     }
 
-    public CommonResult getFollowCountById(String id) {
-        Optional<User> userOptional = userDao.findById(id);
-        if (!userOptional.isPresent()){
-            ExceptionCast.cast(UserExceptionCode.USER_NOT_EXIST);
-        }
-        return new CommonResult<>(CommonCode.SUCCESS, userOptional.get().getFollowCount());
-    }
 }

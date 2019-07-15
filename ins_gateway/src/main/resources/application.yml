@@ -1,19 +1,13 @@
 spring:
   application:
-    name: mooc-gateway
+    name: ins-gateway
   cloud:
     gateway:
       routes:
-      - id: manager-cms-service
-        uri: lb://MANAGER-CMS-SERVICE
+      - id: ins-user-service
+        uri: lb://INS-USER-SERVICE
         predicates:
-        - Path=/api/cms/**
-        filters:
-        - StripPrefix=2
-      - id: course-service
-        uri: lb://COURSE-SERVICE
-        predicates:
-        - Path=/api/course/**
+        - Path=/api/user/**
         filters:
         - StripPrefix=1
 server:
