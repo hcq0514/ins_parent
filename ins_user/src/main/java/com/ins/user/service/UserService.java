@@ -64,10 +64,16 @@ public class UserService {
         return user;
     }
 
-    public List<User> getFollowList(String id) {
+    public List<User> getFollowListByUserId(String id) {
         //判断是否存在该用户
         getUserById(id);
         return userDao.getFollowList(id);
+    }
+
+    public List<User> getFansListByUserId(String id) {
+        //判断是否存在该用户
+//        getUserById(id);
+        return userDao.getFansList(id);
     }
 
 }

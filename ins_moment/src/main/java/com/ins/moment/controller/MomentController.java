@@ -47,4 +47,10 @@ public class MomentController {
         return new CommonResult<>(CommonCode.SUCCESS, null);
     }
 
+    @ApiOperation("查询用户动态")
+    @GetMapping("getCommentsByUserId")
+    public CommonResult getCommentsByUserId(@RequestParam("userId") String userId) {
+        return new CommonResult<>(CommonCode.SUCCESS, momentService.getCommentsByUserId(userId));
+    }
+
 }

@@ -56,10 +56,16 @@ public class UserController {
         return new CommonResult<>(CommonCode.SUCCESS, userService.getUserById(id));
     }
 
-    @ApiOperation("获取用户信息")
-    @GetMapping("followList")
-    public CommonResult followList(@RequestParam("userId") String userId) {
-        return new CommonResult<>(CommonCode.SUCCESS, userService.getFollowList(userId));
+    @ApiOperation("获取用户关注列表")
+    @GetMapping("getFollowListByUserId")
+    public CommonResult getFollowListByUserId(@RequestParam("userId") String userId) {
+        return new CommonResult<>(CommonCode.SUCCESS, userService.getFollowListByUserId(userId));
+    }
+
+    @ApiOperation("获取用户粉丝列表")
+    @GetMapping("getFansListByUserId")
+    public CommonResult getFansListByUserId(@RequestParam("userId") String userId) {
+        return new CommonResult<>(CommonCode.SUCCESS, userService.getFansListByUserId(userId));
     }
 
 }
