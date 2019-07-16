@@ -10,6 +10,12 @@ spring:
         - Path=/api/user/**
         filters:
         - StripPrefix=1
+      - id: ins-moment-service
+        uri: lb://INS-MOMENT-SERVICE
+        predicates:
+        - Path=/api/moment/**
+        filters:
+        - StripPrefix=1
 server:
   port: 6001
 eureka:

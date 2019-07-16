@@ -10,6 +10,7 @@
         <module>ins_gateway</module>
         <module>ins_common</module>
         <module>ins_model</module>
+        <module>ins_moment</module>
     </modules>
 
     <parent>
