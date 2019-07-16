@@ -28,6 +28,8 @@ public class Moment implements Serializable {
     private String id;
     @ApiModelProperty("发表用户id")
     private String userId;
+    @ApiModelProperty("动态图片")
+    private String photoUrl;
     @ApiModelProperty("动态内容")
     private String content;
     @ApiModelProperty("收藏数")
