@@ -4,6 +4,8 @@ import com.ins.common.exception.ExceptionCast;
 import com.ins.common.exception.code.MomentExceptionCode;
 import com.ins.model.moment.Moment;
 import com.ins.moment.dao.MomentDao;
+import com.ins.moment.dto.MomentDetailDto;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +47,14 @@ public class MomentService {
 
     public List getCommentsByUserId(String id) {
         return momentDao.getByUserId(id);
+    }
+
+    public MomentDetailDto getMomentDetail(String userId, String momentId) {
+        MomentDetailDto momentDetailDto = new MomentDetailDto();
+        Moment moment = getMomentById(momentId);
+        BeanUtils.copyProperties(moment, momentDetailDto);
+        momentDetailDto.setUsername("hcq");
+        momentDetailDto.setUserHeadImg("https://i.ibb.co/515PkG6/20190715145133.jpg");
+        return momentDetailDto;
     }
 }
