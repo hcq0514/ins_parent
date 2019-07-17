@@ -1,0 +1,14 @@
+server:
+  port: 6022
+spring:
+  application:
+    name: ins-user-service
+  datasource:
+    url: jdbc:mysql://47.100.97.46:3306/ins_user?serverTimezone=GMT%2B8&characterEncoding=UTF-8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6000/eureka/
