@@ -57,4 +57,8 @@ public class MomentService {
         momentDetailDto.setUserHeadImg("https://i.ibb.co/515PkG6/20190715145133.jpg");
         return momentDetailDto;
     }
+
+    public List getMomentByIds(List ids) {
+        return momentDao.getByIdIn(ids);
+    }
 }

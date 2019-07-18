@@ -16,4 +16,6 @@ import java.util.Optional;
 @Repository
 public interface MomentDao extends JpaRepository<Moment, String> {
     List<Moment> getByUserId(String userId);
+
+    List<Moment> getByIdIn(List ids);
 }

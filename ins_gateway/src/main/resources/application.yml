@@ -16,6 +16,12 @@ spring:
         - Path=/api/moment/**
         filters:
         - StripPrefix=1
+      - id: ins-collect-service
+        uri: lb://INS-COLLECT-SERVICE
+        predicates:
+        - Path=/api/collect/**
+        filters:
+        - StripPrefix=1
 server:
   port: 6001
 eureka:
