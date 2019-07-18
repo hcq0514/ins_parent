@@ -41,7 +41,7 @@ public interface MomentControllerApi {
 
     @ApiOperation("查看具体动态")
     @GetMapping("getMomentByIds")
-    CommonResult getMomentByIds( @RequestParam("ids") List ids);
+    CommonResult getMomentByIds( @RequestParam("ids") String ids);
 
 
 }

@@ -12,8 +12,16 @@ import lombok.EqualsAndHashCode;
 @Data
 public class CommonResult<T> extends ResponseResult {
     T t;
+
     public CommonResult(ResultCode resultCode, T t) {
         super(resultCode);
         this.t = t;
+    }
+
+    public CommonResult(T t) {
+        this.t = t;
+    }
+
+    public CommonResult() {
     }
 }

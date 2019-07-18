@@ -15,7 +15,7 @@ import java.util.List;
 public interface CollectionMomentDao extends JpaRepository<CollectionMoment, String> {
     @Query(value = "SELECT count(0) from collection_moment where  collection_id = ?1"
             , nativeQuery = true)
-    Integer getCollectionMomentCount(String collection_id);
+    Integer getCollectionMomentCount(String collectionId);
 
     List<CollectionMoment> getByCollectionId(String collectionId);
 }

@@ -1,5 +1,6 @@
 package com.ins.collect.client;
 
+import com.ins.common.result.CommonResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class MomentClientTest {
 
     @Test
     public void testMq() {
-        momentClient.getCommentsByUserId("5a795ac7dd573c04508f3a56");
-        System.out.println();
+        CommonResult commentsByUserId = momentClient.getMomentByIds("(1,2)");
+        System.out.println(commentsByUserId);
     }
 
 

@@ -9,8 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author : hcq
@@ -58,7 +57,9 @@ public class MomentService {
         return momentDetailDto;
     }
 
-    public List getMomentByIds(List ids) {
-        return momentDao.getByIdIn(ids);
+    public List getMomentByIds(String ids) {
+        ArrayList<String> objects = new ArrayList<>();
+        Collections.addAll(objects,ids.split(","));
+        return momentDao.getByIdIn(objects);
     }
 }

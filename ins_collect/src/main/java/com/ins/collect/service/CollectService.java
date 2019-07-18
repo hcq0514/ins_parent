@@ -87,7 +87,7 @@ public class CollectService {
     public List<Moment> getCollectionMoment(String collectionId) {
         List<CollectionMoment> collectionMoments = collectionMomentDao.getByCollectionId(collectionId);
         List<String> collect = collectionMoments.stream().map(CollectionMoment::getMomentId).collect(Collectors.toList());
-        CommonResult momentByIds = momentClient.getMomentByIds(collect);
+        CommonResult momentByIds = momentClient.getMomentByIds(collect.toString());
         return null;
     }
 

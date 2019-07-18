@@ -69,7 +69,7 @@ public class MomentController implements MomentControllerApi {
     }
 
     @Override
-    public CommonResult getMomentByIds(@RequestParam("ids") List ids) {
+    public CommonResult getMomentByIds(@RequestParam("ids") String ids) {
         return new CommonResult<>(CommonCode.SUCCESS, momentService.getMomentByIds(ids));
     }
 

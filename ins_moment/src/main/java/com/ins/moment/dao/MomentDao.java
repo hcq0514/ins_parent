@@ -1,13 +1,10 @@
 package com.ins.moment.dao;
 
 import com.ins.model.moment.Moment;
-import com.ins.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author : hcq
@@ -18,4 +15,5 @@ public interface MomentDao extends JpaRepository<Moment, String> {
     List<Moment> getByUserId(String userId);
 
     List<Moment> getByIdIn(List ids);
+
 }

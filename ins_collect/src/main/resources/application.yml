@@ -12,3 +12,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:6000/eureka/
+lombok:
+  anyConstructor:
+    addConstructorProperties: true
+
