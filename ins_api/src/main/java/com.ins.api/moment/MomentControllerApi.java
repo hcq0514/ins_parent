@@ -39,9 +39,9 @@ public interface MomentControllerApi {
     @GetMapping("detail")
     CommonResult getCommentsByUserId(@RequestParam("userId") String userId, @RequestParam("momentId") String momentId);
 
-    @ApiOperation("查看具体动态")
+    @ApiOperation("根据ids查询moment，用,分隔")
     @GetMapping("getMomentByIds")
-    CommonResult getMomentByIds( @RequestParam("ids") String ids);
+    CommonResult<List<Moment>> getMomentByIds( @RequestParam("ids") String ids);
 
 
 }

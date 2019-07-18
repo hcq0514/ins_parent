@@ -1,6 +1,5 @@
 package com.ins.collect.service;
 
-import com.ins.api.moment.MomentControllerApi;
 import com.ins.collect.client.MomentClient;
 import com.ins.collect.dao.CollectionDao;
 import com.ins.collect.dao.CollectionMomentDao;
@@ -11,14 +10,12 @@ import com.ins.model.collect.Collection;
 import com.ins.model.collect.CollectionMoment;
 import com.ins.model.collect.UserCollectionDto;
 import com.ins.model.moment.Moment;
-import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * @author : hcq
@@ -86,9 +83,17 @@ public class CollectService {
 
     public List<Moment> getCollectionMoment(String collectionId) {
         List<CollectionMoment> collectionMoments = collectionMomentDao.getByCollectionId(collectionId);
-        List<String> collect = collectionMoments.stream().map(CollectionMoment::getMomentId).collect(Collectors.toList());
-        CommonResult momentByIds = momentClient.getMomentByIds(collect.toString());
-        return null;
+        List moments = null;
+        if (collectionMoments != null && collectionMoments.size()>0) {
+            StringBuilder sb = new StringBuilder();
+            collectionMoments.stream()
+                    .map(CollectionMoment::getMomentId)
+                    .forEach(x -> sb.append(x).append(","));
+            String ids = sb.substring(0, sb.length() - 1);
+            CommonResult<List<Moment>> result = momentClient.getMomentByIds(ids);
+            moments = result.getT();
+        }
+        return moments;
     }
 
     public List getUserCollections(String userId) {

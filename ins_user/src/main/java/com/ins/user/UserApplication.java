@@ -11,10 +11,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication(scanBasePackages = "com.ins.*")
 @EntityScan("com.ins.model.*")
 @EnableSwagger2
-public class CollectApplication {
+public class UserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CollectApplication.class);
+        SpringApplication.run(UserApplication.class);
     }
 
 

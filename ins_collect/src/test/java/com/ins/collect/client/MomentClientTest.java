@@ -1,23 +1,39 @@
 package com.ins.collect.client;
 
-import com.ins.common.result.CommonResult;
+import com.ins.model.collect.CollectionMoment;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
+//@SpringBootTest
+//@RunWith(SpringRunner.class)
 public class MomentClientTest {
-    @Autowired
-    MomentClient momentClient;
-
+    //    @Autowired
+//    MomentClient momentClient;
+//
+//    @Test
+//    public void testMq() {
+//        CommonResult commentsByUserId = momentClient.getMomentByIds("(1,2)");
+//        System.out.println(commentsByUserId);
+//    }
     @Test
     public void testMq() {
-        CommonResult commentsByUserId = momentClient.getMomentByIds("(1,2)");
-        System.out.println(commentsByUserId);
+        List<CollectionMoment> collectionMoments = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            collectionMoments.add(new CollectionMoment().setCollectionId(Integer.toString(i)));
+        }
+        StringBuilder sb = new StringBuilder();
+
+        collectionMoments.stream()
+                .map(CollectionMoment::getCollectionId)
+                .forEach(x-> sb.append(x).append(","));
+
+        String ids= sb.substring(0,sb.length()-1);
+
+
+        System.out.println("s = " + ids);
     }
 
 
