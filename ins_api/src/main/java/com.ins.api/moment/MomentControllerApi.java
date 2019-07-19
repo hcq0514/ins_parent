@@ -32,8 +32,8 @@ public interface MomentControllerApi {
     CommonResult deleteMoment(@RequestParam("id") String id);
 
     @ApiOperation("查询用户动态")
-    @GetMapping("getCommentsByUserId")
-    CommonResult getCommentsByUserId(@RequestParam("userId") String userId);
+    @GetMapping("getMomentsByUserId")
+    CommonResult getMomentsByUserId(@RequestParam("userId") String userId);
 
     @ApiOperation("查看具体动态")
     @GetMapping("detail")

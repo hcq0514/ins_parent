@@ -75,23 +75,19 @@ public class CollectService {
         return collectionDao.save(collection);
     }
 
-    public void deleteCollectionById(String id) {
-        getCollectionById(id);
-        collectionDao.deleteById(id);
-    }
 
 
     public List<Moment> getCollectionMoment(String collectionId) {
         List<CollectionMoment> collectionMoments = collectionMomentDao.getByCollectionId(collectionId);
         List moments = null;
-        if (collectionMoments != null && collectionMoments.size()>0) {
+        if (collectionMoments != null && collectionMoments.size() > 0) {
             StringBuilder sb = new StringBuilder();
             collectionMoments.stream()
                     .map(CollectionMoment::getMomentId)
                     .forEach(x -> sb.append(x).append(","));
             String ids = sb.substring(0, sb.length() - 1);
             CommonResult<List<Moment>> result = momentClient.getMomentByIds(ids);
-            moments = result.getT();
+            moments = result.getData();
         }
         return moments;
     }
@@ -109,5 +105,16 @@ public class CollectService {
             userCollectionDtos.add(userCollectionDto);
         }
         return userCollectionDtos;
+    }
+
+    public void deleteCollectionByCollectionId(String collectionId) {
+        Collection collection = getCollectionById(collectionId);
+        collectionDao.delete(collection);
+    }
+
+    public Collection renameCollection(String collectionId, String newName) {
+        Collection collection = getCollectionById(collectionId);
+        collection.setCollectionName(newName);
+        return collectionDao.save(collection);
     }
 }

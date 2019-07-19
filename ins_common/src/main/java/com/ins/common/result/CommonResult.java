@@ -11,15 +11,15 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class CommonResult<T> extends ResponseResult {
-    T t;
+    T data;
 
-    public CommonResult(ResultCode resultCode, T t) {
+    public CommonResult(ResultCode resultCode, T data) {
         super(resultCode);
-        this.t = t;
+        this.data = data;
     }
 
-    public CommonResult(T t) {
-        this.t = t;
+    public CommonResult(T data) {
+        this.data = data;
     }
 
     public CommonResult() {
