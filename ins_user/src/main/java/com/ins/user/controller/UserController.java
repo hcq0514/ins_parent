@@ -39,9 +39,9 @@ public class UserController {
 
     @ApiOperation("用户登录")
     @PostMapping("login")
-    public CommonResult login(@RequestParam("email") String email, @RequestParam("password") String password) {
+    public CommonResult login(@RequestBody User user) {
         //todo 根据用户输入的邮箱或者名称来登录，这边只做了邮箱登录
-        return new CommonResult<>(CommonCode.SUCCESS, userService.login(email, password));
+        return new CommonResult<>(CommonCode.SUCCESS, userService.login(user.getEmail(), user.getPassword()));
     }
 
     @ApiOperation("修改密码")

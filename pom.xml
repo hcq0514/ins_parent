@@ -13,6 +13,7 @@
         <module>ins_moment</module>
         <module>ins_collect</module>
         <module>ins_api</module>
+        <module>ins_base</module>
     </modules>
 
     <parent>

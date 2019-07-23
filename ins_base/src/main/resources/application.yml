@@ -1,0 +1,18 @@
+server:
+  port: 6023
+spring:
+  application:
+    name: ins-base-service
+  datasource:
+    url: jdbc:mysql://47.100.97.46:3306/ins_base?serverTimezone=GMT%2B8&characterEncoding=UTF-8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6000/eureka/
+lombok:
+  anyConstructor:
+    addConstructorProperties: true
+
