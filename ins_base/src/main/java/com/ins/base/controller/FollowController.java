@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
  * @date : 2019/7/12
  */
 
-@ApiOperation("收藏功能api")
+@ApiOperation("关注功能api")
 @RestController
 @RequestMapping("follow")
 public class FollowController {
@@ -26,7 +26,7 @@ public class FollowController {
 
     @ApiOperation("添加关注")
     @PostMapping("addFollow")
-    public CommonResult addCollection(Follow follow) {
+    public CommonResult addFollow(Follow follow) {
         follow.setCreateTime(LocalDateTime.now());
         follow.setUpdateTime(LocalDateTime.now());
         follow.setStatus(true);
