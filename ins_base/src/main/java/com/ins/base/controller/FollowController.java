@@ -1,30 +1,30 @@
 package com.ins.base.controller;
 
+import com.ins.api.base.FollowControllerApi;
 import com.ins.base.service.FollowService;
 import com.ins.common.result.CommonCode;
 import com.ins.common.result.CommonResult;
 import com.ins.model.base.Follow;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author : hcq
  * @date : 2019/7/12
  */
 
-@ApiOperation("关注功能api")
 @RestController
 @RequestMapping("follow")
-public class FollowController {
+public class FollowController implements FollowControllerApi {
 
     @Autowired
     FollowService followService;
 
 
-    @ApiOperation("添加关注")
+    @Override
     @PostMapping("addFollow")
     public CommonResult addFollow(Follow follow) {
         follow.setCreateTime(LocalDateTime.now());
@@ -33,13 +33,25 @@ public class FollowController {
         return new CommonResult<>(CommonCode.SUCCESS, followService.saveFollow(follow));
     }
 
-    @ApiOperation("判断是否已关注")
+    @Override
+    @GetMapping("getFollowList")
+    public CommonResult<List<Follow>> getFollowList(@RequestParam("userId") String userId) {
+        return new CommonResult<>(CommonCode.SUCCESS, followService.getFollowList(userId));
+    }
+
+    @Override
+    @GetMapping("getFansList")
+    public CommonResult<List<Follow>> getFansList(@RequestParam("userId") String userId) {
+        return new CommonResult<>(CommonCode.SUCCESS, followService.getFansList(userId));
+    }
+
+    @Override
     @GetMapping("existFollowByUserIdAndTargetUserId")
     public CommonResult existFollowByUserIdAndTargetUserId(@RequestParam("userId") String userId, @RequestParam("targetUserId") String targetUserId) {
         return new CommonResult<>(CommonCode.SUCCESS, followService.existFollowByUserIdAndTargetUserId(userId, targetUserId));
     }
 
-    @ApiOperation("删除关注")
+    @Override
     @GetMapping("deleteFollowByUserIdAndTargetUserId")
     public CommonResult deleteFollowByUserIdAndTargetUserId(@RequestParam("userId") String userId, @RequestParam("targetUserId") String targetUserId) {
         followService.deleteFollowByUserIdAndTargetUserId(userId, targetUserId);

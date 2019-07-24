@@ -2,11 +2,16 @@ package com.ins.user.service;
 
 import com.ins.common.exception.ExceptionCast;
 import com.ins.common.exception.code.UserExceptionCode;
+import com.ins.common.result.CommonResult;
+import com.ins.model.base.Follow;
 import com.ins.model.user.User;
+import com.ins.user.client.FollowClient;
 import com.ins.user.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +24,9 @@ public class UserService {
 
     @Autowired
     UserDao userDao;
+
+    @Autowired
+    FollowClient followClient;
 
     public User register(User user) {
         return userDao.save(user);
@@ -67,13 +75,27 @@ public class UserService {
     public List<User> getFollowListByUserId(String id) {
         //判断是否存在该用户
         getUserById(id);
-        return userDao.getFollowList(id);
+        CommonResult<List<Follow>> followList1 = followClient.getFollowList(id);
+        List<Follow> followList = followList1.getData();
+        StringBuilder sb = new StringBuilder();
+        followList.stream()
+                .map(Follow::getTargetUserId)
+                .forEach(x -> sb.append(x).append(","));
+        ArrayList<String> ids = new ArrayList<>();
+        Collections.addAll(ids, sb.substring(0, sb.length() - 1).split(","));
+        return userDao.getByIdIn(ids);
     }
 
     public List<User> getFansListByUserId(String id) {
         //判断是否存在该用户
-//        getUserById(id);
-        return userDao.getFansList(id);
+        getUserById(id);
+        List<Follow> followList = followClient.getFansList(id).getData();
+        StringBuilder sb = new StringBuilder();
+        followList.stream()
+                .map(Follow::getUserId)
+                .forEach(x -> sb.append(x).append(","));
+        ArrayList<String> ids = new ArrayList<>();
+        Collections.addAll(ids, sb.substring(0, sb.length() - 1).split(","));
+        return userDao.getByIdIn(ids);
     }
-
 }

@@ -17,11 +17,5 @@ public interface UserDao extends JpaRepository<User, String> {
 
     Optional<User> getByEmail(String email);
 
-    @Query(value = "SELECT * from user where id in (SELECT target_user from follow where user_id = ?1)"
-            , nativeQuery = true)
-    List<User> getFollowList(String id);
-
-    @Query(value = "SELECT * from user where id in (SELECT user_id  from follow where target_user = ?1)"
-            , nativeQuery = true)
-    List<User> getFansList(String id);
+    List<User> getByIdIn(List ids);
 }
