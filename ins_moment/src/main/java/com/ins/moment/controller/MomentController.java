@@ -73,4 +73,9 @@ public class MomentController implements MomentControllerApi {
         return new CommonResult<>(CommonCode.SUCCESS, momentService.getMomentByIds(ids));
     }
 
+    @Override
+    public CommonResult<List<Moment>> followUserListMoments(String ids) {
+        return null;
+    }
+
 }

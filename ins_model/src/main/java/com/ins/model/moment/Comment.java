@@ -19,32 +19,19 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Accessors(chain = true)
-@Table(name = "moment")
+@Table(name = "comment")
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
-public class Moment implements Serializable {
+public class Comment implements Serializable {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")
     private String id;
-    @ApiModelProperty("发表用户id")
-    private String userId;
-    @ApiModelProperty("动态图片")
-    private String photoUrl;
-    @ApiModelProperty("动态内容")
+    @ApiModelProperty("动态id")
+    private String momentId;
+    @ApiModelProperty("评论内容")
     private String content;
-    @ApiModelProperty("收藏数")
-    private Integer collectNum;
-    @ApiModelProperty("点赞数")
-    private Integer likeNum;
-    @ApiModelProperty("评论数")
-    private Integer commentNum;
-    @ApiModelProperty("转发数")
-    private Integer forwardNum;
-    @ApiModelProperty("从哪里转发")
-    private String forwardFromUserId;
-    @ApiModelProperty("从哪里转发")
-    private String forwardFromUserName;
-    @ApiModelProperty("从哪里转发")
+    @ApiModelProperty("发表评论的用户id")
+    private String userId;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 

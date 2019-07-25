@@ -26,7 +26,10 @@ public class FollowController implements FollowControllerApi {
 
     @Override
     @PostMapping("addFollow")
-    public CommonResult addFollow(Follow follow) {
+    public CommonResult addFollow(@RequestParam("userId") String userId, @RequestParam("targetUserId") String targetUserId) {
+        Follow follow = new Follow()
+                .setUserId(userId)
+                .setTargetUserId(targetUserId);
         follow.setCreateTime(LocalDateTime.now());
         follow.setUpdateTime(LocalDateTime.now());
         follow.setStatus(true);

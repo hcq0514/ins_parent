@@ -20,7 +20,7 @@ public interface FollowControllerApi {
 
     @ApiOperation("添加关注")
     @PostMapping("addFollow")
-    CommonResult addFollow(Follow follow);
+    CommonResult addFollow(@RequestParam("userId") String userId, @RequestParam("targetUserId") String targetUserId);
 
     @ApiOperation("获取用户关注用户")
     @GetMapping("getFollowList")

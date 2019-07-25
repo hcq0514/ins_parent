@@ -43,6 +43,10 @@ public interface MomentControllerApi {
     @GetMapping("getMomentByIds")
     CommonResult<List<Moment>> getMomentByIds( @RequestParam("ids") String ids);
 
+    @ApiOperation("查询用户关注人动态")
+    @GetMapping("followUserMoments")
+    CommonResult<List<Moment>> followUserListMoments( @RequestParam("ids") String ids);
+
 
 }
 
