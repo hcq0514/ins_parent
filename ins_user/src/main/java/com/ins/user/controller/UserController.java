@@ -1,5 +1,6 @@
 package com.ins.user.controller;
 
+import com.ins.api.user.UserControllerApi;
 import com.ins.common.result.CommonCode;
 import com.ins.common.result.CommonResult;
 import com.ins.model.user.User;
@@ -16,12 +17,13 @@ import org.springframework.web.bind.annotation.*;
 @ApiOperation("用户接口")
 @RestController
 @RequestMapping("user")
-public class UserController {
+public class UserController implements UserControllerApi {
 
     @Autowired
     UserService userService;
 
 
+    @Override
     @ApiOperation("用户注册")
     @PostMapping("register")
     public CommonResult register(@RequestBody User user) {
@@ -29,6 +31,7 @@ public class UserController {
         return new CommonResult<>(CommonCode.SUCCESS, userService.register(user));
     }
 
+    @Override
     @ApiOperation("更新用户姓名与简介")
     @PutMapping("modifyUsernameAndBio")
     public CommonResult modifyUsernameAndBio(@RequestParam(value = "id", required = false) String id,
@@ -37,6 +40,7 @@ public class UserController {
         return new CommonResult<>(CommonCode.SUCCESS, userService.modifyUsernameAndBio(id, username, bio));
     }
 
+    @Override
     @ApiOperation("用户登录")
     @PostMapping("login")
     public CommonResult login(@RequestBody User user) {
@@ -44,24 +48,30 @@ public class UserController {
         return new CommonResult<>(CommonCode.SUCCESS, userService.login(user.getEmail(), user.getPassword()));
     }
 
+    @Override
     @ApiOperation("修改密码")
     @PutMapping("modifyPassword")
-    public CommonResult modifyPassword(String email, String oldPassword, String newPassword) {
+    public CommonResult modifyPassword(@RequestParam("email") String email,
+                                       @RequestParam("oldPassword") String oldPassword,
+                                       @RequestParam("newPassword") String newPassword) {
         return new CommonResult<>(CommonCode.SUCCESS, userService.modifyPassword(email, oldPassword, newPassword));
     }
 
+    @Override
     @ApiOperation("获取用户信息")
     @GetMapping("{id}")
     public CommonResult getUserInfo(@PathVariable("id") String id) {
         return new CommonResult<>(CommonCode.SUCCESS, userService.getUserById(id));
     }
 
+    @Override
     @ApiOperation("获取用户关注列表")
     @GetMapping("getFollowListByUserId")
     public CommonResult getFollowListByUserId(@RequestParam("userId") String userId) {
         return new CommonResult<>(CommonCode.SUCCESS, userService.getFollowListByUserId(userId));
     }
 
+    @Override
     @ApiOperation("获取用户粉丝列表")
     @GetMapping("getFansListByUserId")
     public CommonResult getFansListByUserId(@RequestParam("userId") String userId) {

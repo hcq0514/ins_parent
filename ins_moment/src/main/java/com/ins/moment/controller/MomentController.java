@@ -4,6 +4,7 @@ import com.ins.api.moment.MomentControllerApi;
 import com.ins.common.result.CommonCode;
 import com.ins.common.result.CommonResult;
 import com.ins.model.moment.Moment;
+import com.ins.model.moment.UserFollowListMomentVo;
 import com.ins.moment.service.MomentService;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,8 +75,8 @@ public class MomentController implements MomentControllerApi {
     }
 
     @Override
-    public CommonResult<List<Moment>> followUserListMoments(String ids) {
-        return null;
+    public CommonResult<List<UserFollowListMomentVo>> followUserListMoments(String userId) {
+        return new CommonResult<>(CommonCode.SUCCESS, momentService.followUserListMoments(userId));
     }
 
 }

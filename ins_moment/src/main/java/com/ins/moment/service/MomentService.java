@@ -3,6 +3,7 @@ package com.ins.moment.service;
 import com.ins.common.exception.ExceptionCast;
 import com.ins.common.exception.code.MomentExceptionCode;
 import com.ins.model.moment.Moment;
+import com.ins.model.moment.UserFollowListMomentVo;
 import com.ins.moment.dao.MomentDao;
 import com.ins.moment.dto.MomentDetailDto;
 import org.springframework.beans.BeanUtils;
@@ -61,5 +62,11 @@ public class MomentService {
         ArrayList<String> objects = new ArrayList<>();
         Collections.addAll(objects,ids.split(","));
         return momentDao.getByIdIn(objects);
+    }
+
+    public List<UserFollowListMomentVo> followUserListMoments(String userId) {
+        //1.获取用户关注人
+
+        return null;
     }
 }

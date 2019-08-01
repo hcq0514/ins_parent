@@ -34,8 +34,7 @@ public class UserFollowListMomentVo implements Serializable {
     @ApiModelProperty("动态创建时间")
     private Integer momentCreateTime;
     @ApiModelProperty("动态图片地址")
-    //todo 后期图片全部改多图片存储
-    private String momentImgList;
+    private List<String> momentImgList;
     @ApiModelProperty("标签")
     private List tags;
     @ApiModelProperty("评论")

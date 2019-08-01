@@ -2,6 +2,7 @@ package com.ins.api.moment;
 
 import com.ins.common.result.CommonResult;
 import com.ins.model.moment.Moment;
+import com.ins.model.moment.UserFollowListMomentVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,9 +44,9 @@ public interface MomentControllerApi {
     @GetMapping("getMomentByIds")
     CommonResult<List<Moment>> getMomentByIds( @RequestParam("ids") String ids);
 
-    @ApiOperation("查询用户关注人动态")
+    @ApiOperation("查询用户关注人动态,用于主页")
     @GetMapping("followUserMoments")
-    CommonResult<List<Moment>> followUserListMoments( @RequestParam("ids") String ids);
+    CommonResult<List<UserFollowListMomentVo>> followUserListMoments(@RequestParam("userId") String userId);
 
 
 }

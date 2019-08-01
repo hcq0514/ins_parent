@@ -18,7 +18,7 @@ public class FollowClientTest {
     MomentClient momentClient;
 
     @Test
-    public  void followClientTest(){
+    public void followClientTest(){
         momentClient.deleteMoment("");
     }
 
