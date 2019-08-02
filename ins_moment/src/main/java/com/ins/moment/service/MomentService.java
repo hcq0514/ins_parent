@@ -1,5 +1,6 @@
 package com.ins.moment.service;
 
+import com.alibaba.fastjson.JSON;
 import com.ins.common.exception.ExceptionCast;
 import com.ins.common.exception.code.MomentExceptionCode;
 import com.ins.common.result.CommonResult;
@@ -14,10 +15,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author : hcq
@@ -42,6 +40,16 @@ public class MomentService {
 
 
     public Moment saveMoment(Moment moment) {
+        //解析url
+        String photoUrl;
+        try {
+            if (!StringUtils.isEmpty(moment.getImgListUrl())) {
+                photoUrl = JSON.toJSONString(Arrays.asList(moment.getImgListUrl().split(";")));
+                moment.setImgListUrl(photoUrl);
+            }
+        } catch (Exception e) {
+            System.out.println("报错。。。");
+        }
         return momentDao.save(moment);
     }
 
@@ -92,7 +100,8 @@ public class MomentService {
             //动态数据
             momentVo.setMomentId(moment.getId())
                     .setMomentCreateTime(moment.getCreateTime())
-                    .setMomentContent(moment.getContent());
+                    .setMomentContent(moment.getContent())
+                    .setMomentImgList(JSON.parseObject(moment.getImgListUrl(), List.class));
             //拼装用户数据
             User momentUser = userClient.getUserInfo(moment.getUserId()).getData();
             momentVo.setUserId(momentUser.getId())
@@ -100,7 +109,7 @@ public class MomentService {
                     .setUserName(momentUser.getUsername())
                     .setUserPhotoUrl(momentUser.getPhotoUrl());
             //判断是否转发
-            if (!StringUtils.isEmpty(moment.getForwardFromUserId() )) {
+            if (!StringUtils.isEmpty(moment.getForwardFromUserId())) {
                 momentVo.setForwardFromUserId(moment.getForwardFromUserId())
                         .setForwardFromUserName(userClient.getUserInfo(moment.getForwardFromUserId()).getData().getUsername());
             }

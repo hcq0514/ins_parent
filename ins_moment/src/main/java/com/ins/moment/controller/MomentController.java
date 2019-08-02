@@ -75,7 +75,8 @@ public class MomentController implements MomentControllerApi {
     }
 
     @Override
-    public CommonResult<List<UserFollowListMomentVo>> followUserListMoments(String userId) {
+    @GetMapping("followUserMoments")
+    public CommonResult<List<UserFollowListMomentVo>> followUserListMoments(@RequestParam("userId") String userId) {
         return new CommonResult<>(CommonCode.SUCCESS, momentService.followUserListMoments(userId));
     }
 

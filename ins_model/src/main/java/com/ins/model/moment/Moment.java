@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author : hcq
@@ -26,8 +27,12 @@ public class Moment implements Serializable {
     private String id;
     @ApiModelProperty("发表用户id")
     private String userId;
+    @ApiModelProperty("动态图片存储数据的jsonURL")
+    private String imgListUrl;
     @ApiModelProperty("动态图片")
-    private String photoUrl;
+    @Transient
+    @JsonIgnore
+    private List<String> imgList;
     @ApiModelProperty("动态内容")
     private String content;
     @ApiModelProperty("收藏数")
