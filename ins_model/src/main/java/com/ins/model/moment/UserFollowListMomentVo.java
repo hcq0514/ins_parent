@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -26,13 +27,13 @@ public class UserFollowListMomentVo implements Serializable {
     @ApiModelProperty("转出自用户id")
     private String forwardFromUserId;
     @ApiModelProperty("转出自用户名称")
-    private Integer forwardFromUserName;
+    private String forwardFromUserName;
     @ApiModelProperty("动态id")
-    private Integer momentId;
+    private String momentId;
     @ApiModelProperty("动态内容")
-    private Integer momentContent;
+    private String momentContent;
     @ApiModelProperty("动态创建时间")
-    private Integer momentCreateTime;
+    private LocalDateTime momentCreateTime;
     @ApiModelProperty("动态图片地址")
     private List<String> momentImgList;
     @ApiModelProperty("标签")

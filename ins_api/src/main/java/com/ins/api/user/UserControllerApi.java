@@ -5,6 +5,8 @@ import com.ins.model.user.User;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author : hcq
  * @date : 2019/7/12
@@ -38,11 +40,11 @@ public interface UserControllerApi {
 
     @ApiOperation("获取用户信息")
     @GetMapping("{id}")
-    CommonResult getUserInfo(@PathVariable("id") String id);
+    CommonResult<User> getUserInfo(@PathVariable("id") String id);
 
     @ApiOperation("获取用户关注列表")
     @GetMapping("getFollowListByUserId")
-    CommonResult getFollowListByUserId(@RequestParam("userId") String userId);
+    CommonResult<List<User>> getFollowListByUserId(@RequestParam("userId") String userId);
 
     @ApiOperation("获取用户粉丝列表")
     @GetMapping("getFansListByUserId")

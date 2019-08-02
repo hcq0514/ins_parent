@@ -1,14 +1,12 @@
 package com.ins.model.moment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -43,6 +41,7 @@ public class Moment implements Serializable {
     @ApiModelProperty("从哪里转发")
     private String forwardFromUserId;
     @ApiModelProperty("从哪里转发")
+    @Transient
     private String forwardFromUserName;
     @ApiModelProperty("从哪里转发")
     private LocalDateTime createTime;

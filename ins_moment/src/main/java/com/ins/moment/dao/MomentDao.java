@@ -16,4 +16,6 @@ public interface MomentDao extends JpaRepository<Moment, String> {
 
     List<Moment> getByIdIn(List ids);
 
+    List<Moment> getByUserIdIn(List userIds);
+
 }

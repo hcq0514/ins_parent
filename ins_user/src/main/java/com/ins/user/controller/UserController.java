@@ -9,6 +9,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author : hcq
  * @date : 2019/7/12
@@ -60,14 +62,14 @@ public class UserController implements UserControllerApi {
     @Override
     @ApiOperation("获取用户信息")
     @GetMapping("{id}")
-    public CommonResult getUserInfo(@PathVariable("id") String id) {
+    public CommonResult<User> getUserInfo(@PathVariable("id") String id) {
         return new CommonResult<>(CommonCode.SUCCESS, userService.getUserById(id));
     }
 
     @Override
     @ApiOperation("获取用户关注列表")
     @GetMapping("getFollowListByUserId")
-    public CommonResult getFollowListByUserId(@RequestParam("userId") String userId) {
+    public CommonResult<List<User>> getFollowListByUserId(@RequestParam("userId") String userId) {
         return new CommonResult<>(CommonCode.SUCCESS, userService.getFollowListByUserId(userId));
     }
 
