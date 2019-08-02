@@ -3,6 +3,7 @@ package com.ins.moment.controller;
 import com.ins.api.moment.MomentControllerApi;
 import com.ins.common.result.CommonCode;
 import com.ins.common.result.CommonResult;
+import com.ins.model.moment.Comment;
 import com.ins.model.moment.Moment;
 import com.ins.model.moment.UserFollowListMomentVo;
 import com.ins.moment.service.MomentService;
@@ -79,5 +80,13 @@ public class MomentController implements MomentControllerApi {
     public CommonResult<List<UserFollowListMomentVo>> followUserListMoments(@RequestParam("userId") String userId) {
         return new CommonResult<>(CommonCode.SUCCESS, momentService.followUserListMoments(userId));
     }
+
+    @Override
+    @PostMapping("addMomentComment")
+    public CommonResult addMomentComment(@RequestParam("userId") String userId, @RequestParam("momentId") String momentId,@RequestParam("content") String content) {
+        Comment comment = new Comment().setUserId(userId).setMomentId(momentId).setContent(content);
+        return new CommonResult<>(CommonCode.SUCCESS, momentService.addMomentComment(comment));
+    }
+
 
 }

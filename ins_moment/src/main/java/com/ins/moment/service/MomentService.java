@@ -4,10 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.ins.common.exception.ExceptionCast;
 import com.ins.common.exception.code.MomentExceptionCode;
 import com.ins.common.result.CommonResult;
+import com.ins.model.moment.Comment;
 import com.ins.model.moment.Moment;
 import com.ins.model.moment.UserFollowListMomentVo;
 import com.ins.model.user.User;
 import com.ins.moment.client.UserClient;
+import com.ins.moment.dao.CommentDao;
 import com.ins.moment.dao.MomentDao;
 import com.ins.moment.dto.MomentDetailDto;
 import org.apache.commons.lang.StringUtils;
@@ -29,6 +31,10 @@ public class MomentService {
 
     @Autowired
     MomentDao momentDao;
+
+    @Autowired
+    CommentDao commentDao;
+
 
     public Moment getMomentById(String id) {
         Optional<Moment> momentOptional = momentDao.findById(id);
@@ -56,6 +62,10 @@ public class MomentService {
     public Moment updateMoment(Moment moment) {
         getMomentById(moment.getId());
         return momentDao.save(moment);
+    }
+
+    public Comment addMomentComment(Comment comment) {
+        return commentDao.save(comment);
     }
 
     public void deleteMomentById(String id) {
@@ -102,6 +112,15 @@ public class MomentService {
                     .setMomentCreateTime(moment.getCreateTime())
                     .setMomentContent(moment.getContent())
                     .setMomentImgList(JSON.parseObject(moment.getImgListUrl(), List.class));
+            //评论数据
+            List<Comment> comments = new ArrayList<>();
+            commentDao.getByMomentId(moment.getId()).stream().forEach(x -> {
+                x.setUserName(userClient.getUserInfo(x.getUserId()).getData().getUsername());
+                comments.add(x);
+            });
+
+            momentVo.setComments(comments);
+
             //拼装用户数据
             User momentUser = userClient.getUserInfo(moment.getUserId()).getData();
             momentVo.setUserId(momentUser.getId())
@@ -118,4 +137,6 @@ public class MomentService {
         }
         return list;
     }
+
+
 }

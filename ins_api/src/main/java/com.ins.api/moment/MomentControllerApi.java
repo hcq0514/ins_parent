@@ -1,6 +1,7 @@
 package com.ins.api.moment;
 
 import com.ins.common.result.CommonResult;
+import com.ins.model.moment.Comment;
 import com.ins.model.moment.Moment;
 import com.ins.model.moment.UserFollowListMomentVo;
 import io.swagger.annotations.ApiOperation;
@@ -48,6 +49,9 @@ public interface MomentControllerApi {
     @GetMapping("followUserMoments")
     CommonResult<List<UserFollowListMomentVo>> followUserListMoments(@RequestParam("userId") String userId);
 
+    @ApiOperation("添加动态评论")
+    @GetMapping("addMomentComment")
+    CommonResult addMomentComment(@RequestParam("userId") String userId, @RequestParam("momentId") String momentId,@RequestParam("content") String content);
 
 }
 

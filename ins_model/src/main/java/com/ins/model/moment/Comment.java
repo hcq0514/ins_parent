@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -32,6 +29,9 @@ public class Comment implements Serializable {
     private String content;
     @ApiModelProperty("发表评论的用户id")
     private String userId;
+    @ApiModelProperty("发表评论的用户姓名，用于回显")
+    @Transient
+    private String userName;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
 
