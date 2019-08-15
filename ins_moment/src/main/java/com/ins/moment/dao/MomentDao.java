@@ -1,6 +1,7 @@
 package com.ins.moment.dao;
 
 import com.ins.model.moment.Moment;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +17,6 @@ public interface MomentDao extends JpaRepository<Moment, String> {
 
     List<Moment> getByIdIn(List ids);
 
-    List<Moment> getByUserIdIn(List userIds);
+    List<Moment> getByUserIdIn(List userIds, Pageable pageable);
 
 }

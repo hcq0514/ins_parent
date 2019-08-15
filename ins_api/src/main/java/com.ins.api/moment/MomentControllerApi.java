@@ -48,7 +48,7 @@ public interface MomentControllerApi {
 
     @ApiOperation("查询用户关注人动态,用于主页")
     @GetMapping("followUserMoments")
-    CommonResult<List<UserFollowListMomentVo>> followUserListMoments(HttpServletRequest httpServletRequest);
+    CommonResult<List<UserFollowListMomentVo>> followUserListMoments(@RequestParam(value = "page", defaultValue = "0") Integer page, HttpServletRequest httpServletRequest);
 
     @ApiOperation("添加动态评论")
     @GetMapping("addMomentComment")

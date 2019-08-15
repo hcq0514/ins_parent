@@ -15,6 +15,8 @@ import com.ins.moment.dto.MomentDetailDto;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -35,6 +37,8 @@ public class MomentService {
     @Autowired
     CommentDao commentDao;
 
+
+    static int PAGE_SIZE = 1;
 
     public Moment getMomentById(String id) {
         Optional<Moment> momentOptional = momentDao.findById(id);
@@ -92,7 +96,7 @@ public class MomentService {
         return momentDao.getByIdIn(objects);
     }
 
-    public List<UserFollowListMomentVo> followUserListMoments(String userId) {
+    public List<UserFollowListMomentVo> followUserListMoments(Integer page, String userId) {
         //1.获取用户关注人
         CommonResult<List<User>> data = userClient.getFollowListByUserId(userId);
         StringBuilder sb = new StringBuilder();
@@ -102,7 +106,8 @@ public class MomentService {
         ArrayList<String> userIds = new ArrayList<>();
         Collections.addAll(userIds, sb.substring(0, sb.length() - 1).split(","));
         //2.获取关注人的最新动态 todo 这边到时候修改查询方式，增加限制等
-        List<Moment> moments = momentDao.getByUserIdIn(userIds);
+        Pageable pageable = PageRequest.of(page, PAGE_SIZE);
+        List<Moment> moments = momentDao.getByUserIdIn(userIds, pageable);
         //3.返回拼装数据
         List<UserFollowListMomentVo> list = new ArrayList<>();
         for (Moment moment : moments) {

@@ -79,14 +79,14 @@ public class MomentController implements MomentControllerApi {
 
     @Override
     @GetMapping("followUserMoments")
-    public CommonResult<List<UserFollowListMomentVo>> followUserListMoments(HttpServletRequest httpServletRequest) {
+    public CommonResult<List<UserFollowListMomentVo>> followUserListMoments(@RequestParam(value = "page", defaultValue = "0") Integer page, HttpServletRequest httpServletRequest) {
         String userId = JwtUtil.getUserIdFromJwtHeader(httpServletRequest);
-        return new CommonResult<>(CommonCode.SUCCESS, momentService.followUserListMoments(userId));
+        return new CommonResult<>(CommonCode.SUCCESS, momentService.followUserListMoments(page,userId));
     }
 
     @Override
     @PostMapping("addMomentComment")
-    public CommonResult addMomentComment(@RequestParam("userId") String userId, @RequestParam("momentId") String momentId,@RequestParam("content") String content) {
+    public CommonResult addMomentComment(@RequestParam("userId") String userId, @RequestParam("momentId") String momentId, @RequestParam("content") String content) {
         Comment comment = new Comment().setUserId(userId).setMomentId(momentId).setContent(content);
         return new CommonResult<>(CommonCode.SUCCESS, momentService.addMomentComment(comment));
     }
