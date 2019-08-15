@@ -105,7 +105,7 @@ public class MomentService {
                 .forEach(x -> sb.append(x).append(","));
         ArrayList<String> userIds = new ArrayList<>();
         Collections.addAll(userIds, sb.substring(0, sb.length() - 1).split(","));
-        //2.获取关注人的最新动态 todo 这边到时候修改查询方式，增加限制等
+        //2.获取关注人的最新动态
         Pageable pageable = PageRequest.of(page, PAGE_SIZE);
         List<Moment> moments = momentDao.getByUserIdIn(userIds, pageable);
         //3.返回拼装数据

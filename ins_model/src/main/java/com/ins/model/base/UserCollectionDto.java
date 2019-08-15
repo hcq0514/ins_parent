@@ -1,4 +1,4 @@
-package com.ins.model.collect;
+package com.ins.model.base;
 
 import lombok.Data;
 import lombok.experimental.Accessors;

@@ -1,7 +1,6 @@
 package com.ins.api.moment;
 
 import com.ins.common.result.CommonResult;
-import com.ins.model.moment.Comment;
 import com.ins.model.moment.Moment;
 import com.ins.model.moment.UserFollowListMomentVo;
 import io.swagger.annotations.ApiOperation;
@@ -44,7 +43,7 @@ public interface MomentControllerApi {
 
     @ApiOperation("根据ids查询moment，用,分隔")
     @GetMapping("getMomentByIds")
-    CommonResult<List<Moment>> getMomentByIds( @RequestParam("ids") String ids);
+    CommonResult<List<Moment>> getMomentByIds(@RequestParam("ids") String ids);
 
     @ApiOperation("查询用户关注人动态,用于主页")
     @GetMapping("followUserMoments")
@@ -52,7 +51,7 @@ public interface MomentControllerApi {
 
     @ApiOperation("添加动态评论")
     @GetMapping("addMomentComment")
-    CommonResult addMomentComment(@RequestParam("userId") String userId, @RequestParam("momentId") String momentId,@RequestParam("content") String content);
+    CommonResult addMomentComment(@RequestParam("userId") String userId, @RequestParam("momentId") String momentId, @RequestParam("content") String content);
 
 }
 

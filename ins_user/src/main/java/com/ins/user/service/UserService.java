@@ -41,7 +41,7 @@ public class UserService {
         if (!user.getPassword().equals(password)) {
             ExceptionCast.cast(UserExceptionCode.PASSWORD_ERROR);
         }
-        String token = JwtUtil.createJWT(UUID.randomUUID().toString(), JSONObject.toJSONString(user), 100000);
+        String token = JwtUtil.createJWT(UUID.randomUUID().toString(), JSONObject.toJSONString(user), 1000000000);
         Map<String,String> map = new HashMap<>(5);
         map.put("userId",user.getId());
         map.put("username",user.getUsername());

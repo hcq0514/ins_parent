@@ -1,6 +1,6 @@
 package com.ins.base.dao;
 
-import com.ins.model.collect.Collection;
+import com.ins.model.base.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

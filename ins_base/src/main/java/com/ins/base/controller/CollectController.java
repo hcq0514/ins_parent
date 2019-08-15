@@ -3,7 +3,7 @@ package com.ins.base.controller;
 import com.ins.base.service.CollectService;
 import com.ins.common.result.CommonCode;
 import com.ins.common.result.CommonResult;
-import com.ins.model.collect.Collection;
+import com.ins.model.base.Collection;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

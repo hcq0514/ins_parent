@@ -1,4 +1,4 @@
-package com.ins.model.collect;
+package com.ins.model.base;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
