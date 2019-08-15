@@ -42,11 +42,11 @@ public class UserService {
             ExceptionCast.cast(UserExceptionCode.PASSWORD_ERROR);
         }
         String token = JwtUtil.createJWT(UUID.randomUUID().toString(), JSONObject.toJSONString(user), 100000);
-        Map map = new HashMap();
-        map.put("userId",user);
-        map.put("username",user);
-        map.put("userBio",user);
-        map.put("userPhoto",user);
+        Map<String,String> map = new HashMap<>(5);
+        map.put("userId",user.getId());
+        map.put("username",user.getUsername());
+        map.put("userBio",user.getBio());
+        map.put("userPhoto",user.getPhotoUrl());
         map.put("token",token);
         return map;
     }

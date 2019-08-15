@@ -19,7 +19,7 @@ public class GlobalCorsConfig {
     /**
      * 这里为支持的请求头，如果有自定义的header字段请自己添加
      */
-    private static final String ALLOWED_HEADERS = "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN,token,username,client,bearer";
+    private static final String ALLOWED_HEADERS = "x-requested-with, authorization, Content-Type, Authorization, credential, X-XSRF-TOKEN,token,username,client,Bearer";
     private static final String ALLOWED_METHODS = "GET, POST, OPTIONS, PUT, DELETE";
     private static final String ALLOWED_ORIGIN = "http://localhost:6100";
     private static final String ALLOWED_EXPOSE = "*";

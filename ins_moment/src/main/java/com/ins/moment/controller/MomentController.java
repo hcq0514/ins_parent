@@ -3,6 +3,7 @@ package com.ins.moment.controller;
 import com.ins.api.moment.MomentControllerApi;
 import com.ins.common.result.CommonCode;
 import com.ins.common.result.CommonResult;
+import com.ins.common.util.JwtUtil;
 import com.ins.model.moment.Comment;
 import com.ins.model.moment.Moment;
 import com.ins.model.moment.UserFollowListMomentVo;
@@ -11,6 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -77,7 +79,8 @@ public class MomentController implements MomentControllerApi {
 
     @Override
     @GetMapping("followUserMoments")
-    public CommonResult<List<UserFollowListMomentVo>> followUserListMoments(@RequestParam("userId") String userId) {
+    public CommonResult<List<UserFollowListMomentVo>> followUserListMoments(HttpServletRequest httpServletRequest) {
+        String userId = JwtUtil.getUserIdFromJwtHeader(httpServletRequest);
         return new CommonResult<>(CommonCode.SUCCESS, momentService.followUserListMoments(userId));
     }
 

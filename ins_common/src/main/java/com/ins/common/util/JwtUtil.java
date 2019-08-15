@@ -72,6 +72,7 @@ public class JwtUtil {
                     .parseClaimsJws(token).getBody();
             //将jwt转为Map
             map = JSON.parseObject(claims.get("sub").toString(), Map.class);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

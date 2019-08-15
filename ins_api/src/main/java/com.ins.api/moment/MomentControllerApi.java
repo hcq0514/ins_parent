@@ -7,6 +7,7 @@ import com.ins.model.moment.UserFollowListMomentVo;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -47,7 +48,7 @@ public interface MomentControllerApi {
 
     @ApiOperation("查询用户关注人动态,用于主页")
     @GetMapping("followUserMoments")
-    CommonResult<List<UserFollowListMomentVo>> followUserListMoments(@RequestParam("userId") String userId);
+    CommonResult<List<UserFollowListMomentVo>> followUserListMoments(HttpServletRequest httpServletRequest);
 
     @ApiOperation("添加动态评论")
     @GetMapping("addMomentComment")
