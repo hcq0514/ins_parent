@@ -1,6 +1,6 @@
-package com.ins.collect.controller;
+package com.ins.base.controller;
 
-import com.ins.collect.service.CollectService;
+import com.ins.base.service.CollectService;
 import com.ins.common.result.CommonCode;
 import com.ins.common.result.CommonResult;
 import com.ins.model.collect.Collection;
@@ -59,7 +59,7 @@ public class CollectController {
     @ApiOperation("重命名收藏夹")
     @GetMapping("renameCollection")
     public CommonResult renameCollection(@RequestParam("collectionId") String collectionId, @RequestParam("newName") String newName) {
-        return new CommonResult<>(CommonCode.SUCCESS, collectService.renameCollection(collectionId,newName));
+        return new CommonResult<>(CommonCode.SUCCESS, collectService.renameCollection(collectionId, newName));
     }
 
 

@@ -25,12 +25,6 @@ public class JwtUtil {
 
     /**
      * 创建jwt
-     *
-     * @param id
-     * @param subject
-     * @param ttlMillis
-     * @return
-     * @throws Exception
      */
     public static String createJWT(String id, String subject, long ttlMillis) {
 
@@ -57,6 +51,9 @@ public class JwtUtil {
     }
 
 
+    /**
+     * 解析jwt token串
+     */
     @SuppressWarnings("unchecked")
     public static Map<String, String> getJwtClaimsFromHeader(HttpServletRequest request) {
         if (request == null) {
@@ -82,6 +79,9 @@ public class JwtUtil {
     }
 
 
+    /**
+     * 返回解析token字符串里的用户数据
+     */
     public static UserJwt getUserJwtFromHeader(HttpServletRequest request) {
         Map<String, String> jwtClaims = getJwtClaimsFromHeader(request);
         if (jwtClaims == null || StringUtils.isEmpty(jwtClaims.get("id"))) {
@@ -98,9 +98,16 @@ public class JwtUtil {
 
 
     /**
+     * 返回解析token字符串里的用户Id
+     */
+    public static String getUserIdFromJwtHeader(HttpServletRequest request) {
+        Map<String, String> jwtClaims = getJwtClaimsFromHeader(request);
+        return jwtClaims.get("id");
+    }
+
+
+    /**
      * 由字符串生成加密key
-     *
-     * @return
      */
     public static SecretKey generalKey() {
         String stringKey = keyName + Constant.JWT_SECRET;

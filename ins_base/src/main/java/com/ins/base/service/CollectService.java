@@ -1,8 +1,8 @@
-package com.ins.collect.service;
+package com.ins.base.service;
 
-import com.ins.collect.client.MomentClient;
-import com.ins.collect.dao.CollectionDao;
-import com.ins.collect.dao.CollectionMomentDao;
+import com.ins.base.client.MomentClient;
+import com.ins.base.dao.CollectionDao;
+import com.ins.base.dao.CollectionMomentDao;
 import com.ins.common.exception.ExceptionCast;
 import com.ins.common.exception.code.CollectExceptionCode;
 import com.ins.common.result.CommonResult;
@@ -74,7 +74,6 @@ public class CollectService {
         getCollectionById(collection.getId());
         return collectionDao.save(collection);
     }
-
 
 
     public List<Moment> getCollectionMoment(String collectionId) {

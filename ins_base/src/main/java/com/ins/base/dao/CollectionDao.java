@@ -1,4 +1,4 @@
-package com.ins.collect.dao;
+package com.ins.base.dao;
 
 import com.ins.model.collect.Collection;
 import org.springframework.data.jpa.repository.JpaRepository;
