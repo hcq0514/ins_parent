@@ -39,7 +39,7 @@
         <spring.cloud.version>Greenwich.SR1</spring.cloud.version>
         <fastjson.version>1.2.56</fastjson.version>
         <swagger2.version>2.9.2</swagger2.version>
-        <jjwt.version>0.10.5</jjwt.version>
+        <jjwt.version>0.9.1</jjwt.version>
         <common.io.version>2.6</common.io.version>
         <ognl.version>3.2.10</ognl.version>
         <mybatis.plus.boot.starter.version>3.1.0</mybatis.plus.boot.starter.version>
@@ -174,6 +174,11 @@
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
                 <version>${aliyun.oss.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

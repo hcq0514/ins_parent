@@ -1,8 +1,10 @@
 package com.ins.user.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ins.common.exception.ExceptionCast;
 import com.ins.common.exception.code.UserExceptionCode;
 import com.ins.common.result.CommonResult;
+import com.ins.common.util.JwtUtil;
 import com.ins.model.base.Follow;
 import com.ins.model.user.User;
 import com.ins.user.client.FollowClient;
@@ -10,10 +12,7 @@ import com.ins.user.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @author : hcq
@@ -33,7 +32,7 @@ public class UserService {
     }
 
     //todo 密码使用加密
-    public User login(String email, String password) {
+    public Map login(String email, String password) {
         Optional<User> userOptional = userDao.getByEmail(email);
         if (!userOptional.isPresent()) {
             ExceptionCast.cast(UserExceptionCode.USER_NOT_EXIST);
@@ -42,7 +41,14 @@ public class UserService {
         if (!user.getPassword().equals(password)) {
             ExceptionCast.cast(UserExceptionCode.PASSWORD_ERROR);
         }
-        return user;
+        String token = JwtUtil.createJWT(UUID.randomUUID().toString(), JSONObject.toJSONString(user), 100000);
+        Map map = new HashMap();
+        map.put("userId",user);
+        map.put("username",user);
+        map.put("userBio",user);
+        map.put("userPhoto",user);
+        map.put("token",token);
+        return map;
     }
 
     public User modifyPassword(String email, String oldPassword, String newPassword) {
