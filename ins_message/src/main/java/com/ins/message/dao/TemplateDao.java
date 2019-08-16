@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface TemplateDao extends JpaRepository<Template, String> {
+    Template getByChannelTemplateId(String channelTemplateId);
 }

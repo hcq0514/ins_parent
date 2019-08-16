@@ -8,6 +8,12 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: root
+  rabbitmq:
+      host: 47.100.97.46
+      username: admin
+      password: admin
+      port: 5672
+      virtual-host: my_vhost
 eureka:
   client:
     service-url:

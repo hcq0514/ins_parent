@@ -57,7 +57,7 @@ public class AliSmsServiceImpl implements ChannelSmsService {
             return new CommonResult(CommonCode.FAIL, e.getMessage());
         }
         if (Objects.requireNonNull(response).getHttpResponse().isSuccess()) {
-            return new CommonResult(CommonCode.FAIL, response.getData());
+            return new CommonResult(CommonCode.SUCCESS, response.getData());
         } else {
             return new CommonResult(CommonCode.FAIL, response.getData());
         }

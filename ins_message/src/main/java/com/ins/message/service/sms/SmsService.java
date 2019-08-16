@@ -42,7 +42,7 @@ public class SmsService {
                     .setCreateTime(LocalDateTime.now())
                     .setUpdateTime(LocalDateTime.now());
             smsDao.save(sms);
-            logger.info("写入消息进阻塞队列，sms:[{}]", sms);
+            logger.info("存入短信到数据库，sms:[{}]", sms);
             send(sms);
         } catch (Exception e) {
             logger.error("写入message失败,exception:[{}]", e.getMessage());
