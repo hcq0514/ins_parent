@@ -10,7 +10,7 @@ import java.util.List;
  */
 @Configuration
 @ConfigurationProperties(prefix = "sms")
-public class ChannelConfig {
+public class SmsChannelConfig {
 
     private List<String> available;
 

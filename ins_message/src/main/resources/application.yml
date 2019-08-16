@@ -9,11 +9,25 @@ spring:
     username: root
     password: root
   rabbitmq:
-      host: 47.100.97.46
-      username: admin
-      password: admin
-      port: 5672
-      virtual-host: my_vhost
+    host: 47.100.97.46
+    username: admin
+    password: admin
+    port: 5672
+    virtual-host: my_vhost
+  #邮箱配置
+  mail:
+    host: smtp.qq.com
+    username: 302827797@qq.com
+    #QQ邮箱的授权码
+    password: rwhbfegjfleqbiab
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 eureka:
   client:
     service-url:
@@ -25,5 +39,11 @@ sms:
     regionId: cn-hangzhou
     domain: dysmsapi.aliyuncs.com
   available:
-  - aliyun #优先使用阿里云
+  - aliyun_sms #优先使用阿里云
+email:
+  qq:
+    sendFrom: 302827797@qq.com
+  available:
+  - qq.email #优先使用QQ邮箱
+
 
