@@ -47,7 +47,7 @@ public class AliSmsServiceImpl implements ChannelSmsService {
         request.setVersion("2017-05-25");
         request.setAction("SendSms");
         request.putQueryParameter("PhoneNumbers", sms.getMobile());
-        request.putQueryParameter("SignName", "cq");
+        request.putQueryParameter("SignName", "hcq");
         request.putQueryParameter("TemplateCode", template.getChannelTemplateId());
         request.putQueryParameter("TemplateParam", sms.getParams());
         CommonResponse response = null;
